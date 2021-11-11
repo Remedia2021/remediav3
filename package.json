@@ -2,6 +2,12 @@
   "name": "js-5pf7ig",
   "version": "0.0.0",
   "private": true,
+  "scripts": {
+  "start": "react-scripts start",
+  "build": "react-scripts build",
+  "test": "react-scripts test",
+  "eject": "react-scripts eject"
+},
   "dependencies": {
     "firebase": "9.0.0-beta.7",
     "firebaseui": "0.600.0-rc.0",
