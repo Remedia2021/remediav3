@@ -1,0 +1,96 @@
+============================================================
+Antidote - API JS-Connect
+v2.2-R1
+============================================================
+
+L'API JS-Connect d'Antidote permet d'insérer les 3 boutons d'Antidote (Correcteur, Dictionnaires, Guides) dans une page HTML.
+
+Les boutons insérés agissent comme si Antidote était appelé par les boutons du connecteur depuis la barre du fureteur.
+
+De plus, pour le correcteur, l'API permet de lier un ou plusieurs champs éditables au bouton inséré, de sorte que seulement les champs liés un bouton soient traités. Il est également possible d'insérer plusieurs boutons du correcteur, chaque bouton étant lié à un groupe de champs à corriger.
+
+
+============================================================
+Important
+============================================================
+
+- Voir le fichier Antidote-API_JS-Connect.html pour plus de détails.
+
+- S'assurer que le connecteur d'Antidote soit installé et qu'il offre l'API JS-Connect. 
+Pour ce faire:
+	- vérifier la présence de l'identifiant antidoteapi_jsconnect_actif.
+		Par exemple:
+		var API_JS-Connect_EstPresent = document.getElementById('antidoteapi_jsconnect_actif') != null;
+	- ou vérifier la version minimale des connecteurs
+		- Firefox : 9.50.46
+		- Google Chrome : 901.1033.21
+		- Safari : 9.7.48
+
+- Les boutons insérés ne doivent pas être sélectionnables.
+
+- Les champs éditables peuvent être liés seulement au correcteur (et non aux dictionnaires ou aux guides).
+
+- L'API n'est pas fonctionnelle avec Internet Explorer.
+
+
+============================================================
+Activation des boutons
+============================================================
+
+L'activation d'un bouton permet de déclencher une action de l'API lorsque le bouton est cliqué.
+
+Au chargement de la page, tous les boutons présents sont automatiquement activés ; pour que cette activation automatique s'effectue, le noeud <html> doit contenir l'attribut
+	antidoteapi_jsconnect="true".
+
+Si un bouton est ajouté après le chargement de la page, il faut l'activer par l'appel suivant (qui active tous les boutons non encore activés):
+	window.activeAntidoteAPI_JSConnect();
+
+La désactivation des boutons insérés se fait par l'appel suivant:
+	window.desactiveAntidoteAPI_JSConnect();
+
+============================================================
+Cas 1 - Boutons non liés
+============================================================
+
+Pour insérer un bouton non lié, ajouter dans le code HTML un noeud ayant l'attribut data-antidoteapi_jsconnect_lanceoutil avec l'un des paramètres suivants:
+	"C" pour lancer le Correcteur
+	"D" pour lancer les Dictionnaires
+	"G" pour lancer les Guides
+Par exemple: <button data-antidoteapi_jsconnect_lanceoutil="C">
+
+============================================================
+Cas 2 - Boutons liés à des champs éditables
+============================================================
+
+Pour insérer un bouton du correcteur et le lier à un groupe de champ(s) éditable(s):
+
+- ajouter l'attribut data-antidoteapi_jsconnect_groupe_id=PARAM dans le noeud de chaque champ éditable à lier, où PARAM identifie le(s) champ(s) à lier.
+Par exemple:
+	<textarea rows="10" data-antidoteapi_jsconnect_groupe_id="01">
+
+- en plus de l'attribut data-antidoteapi_jsconnect_lanceoutil (voir Cas 1), ajouter l'attribut data-antidoteapi_jsconnect_groupe_id=PARAM dans le noeud du bouton.
+Par exemple:
+	<button data-antidoteapi_jsconnect_lanceoutil="C" data-antidoteapi_jsconnect_groupe_id="01">
+
+
+
+============================================================
+Exemple d’implémentation
+============================================================
+
+1. Installer le connecteur d'Antidote dans un fureteur Web (Firefox, Google Chrome, Safari).
+
+2. S'assurer que le connecteur d'Antidote offre l'API JS-Connect (voir ci-dessus).
+
+3. Copier les fichiers suivants dans un même dossier sur un serveur Web:
+	Antidote-API_JS-Connect.css
+	Antidote-API_JS-Connect.html
+	Antidote-API_JS-Connect.js
+	Correcteur.png
+	Dictionnaires.png
+	Guides.png
+
+4. Charger la page Antidote-API_JS-Connect.html dans le fureteur.
+
+____________________________________
+Septembre 2017, © Druide informatique inc.
