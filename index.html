@@ -45,7 +45,7 @@ tinyMCE.init({
    },
 
    languagetool_i18n_current_lang :
-       function() { return document.checkform.lang.value; },
+       function() { return document.checkform.language.value; },
    /* The URL of your LanguageTool server.
       If you use your own server here and it's not running on the same domain 
       as the text form, make sure the server gets started with '--allow-origin ...' 
@@ -70,7 +70,7 @@ tinyMCE.init({
 });
 
 function doit() {
-   var langCode = document.checkform.lang.value;
+   var langCode = document.checkform.language.value;
    tinyMCE.activeEditor.execCommand("mceWritingImprovementTool", langCode);
 }
 </script>
@@ -101,7 +101,7 @@ function doit() {
           rows="10" >Check this text.</textarea>
     </p>
     <div>
-    <select name="lang" id="lang">
+    <select name="language" id="language">
         <option value="en-US">English</option>
     </select>
     <input type="submit" name="_action_checkText"
